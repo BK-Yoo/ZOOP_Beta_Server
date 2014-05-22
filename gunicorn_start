@@ -1,0 +1,35 @@
+#!/bin/bash
+ 
+# Create the log directory if it doesn't exist
+LOGFILE=/home/ubuntu/nbserver/log/server.log
+LOGDIR=$(dirname $LOGFILE)
+test -d $LOGDIR || mkdir -p $LOGDIR
+
+DJANGODIR=/home/ubuntu/nbserver/ens             # Django project directory
+
+
+#######################################GUNICORN OPTION PARAM#########################################
+NAME="ens"             		                # Name of the application
+NUM_WORKERS=3                                   # How many worker processes should Gunicorn spawn
+ADDRESS=0:80					# Binding address
+WORKER=gevent					# Worker type
+DJANGO_WSGI_MODULE=ens.wsgi                     # WSGI module name
+LOGLEVEL=error				 	# Which level want to log
+TIMEOUT=5					# Worker silent for more than TIMEOUT seconds is killed
+MAXREQUEST=1000					# Worker holds requests more than these threshold will restart
+KEEPALIVE=2					# Retain connection between client and server
+#####################################################################################################
+ 
+cd $DJANGODIR
+source ../bin/activate				# Activate virtualenv 
+ 
+exec gunicorn --worker-class $WORKER  \
+  --bind $ADDRESS \
+  --workers $NUM_WORKERS \
+  --name $NAME \
+  --log-level $LOGLEVEL \
+  --log-file $LOGFILE \
+  --max-requests $MAXREQUEST \
+  --timeout $TIMEOUT \
+  --keep-alive $KEEPALIVE \
+  ${DJANGO_WSGI_MODULE}:application \
