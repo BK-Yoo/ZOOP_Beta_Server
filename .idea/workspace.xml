@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="661a88ae-fcb7-44e2-9947-27ec3c528ba1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/staff/clerk.py" afterPath="$PROJECT_DIR$/ens_app/staff/clerk.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ens.iws" />
@@ -87,7 +86,7 @@
       <file leaf-file-name="clerk.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="8" selection-start="6898" selection-end="6898" vertical-scroll-proportion="0.36303192" vertical-offset="1932" max-vertical-offset="13845">
+            <state line="451" column="33" selection-start="19528" selection-end="19528" vertical-scroll-proportion="0.3324468" vertical-offset="6260" max-vertical-offset="13845">
               <folding />
             </state>
           </provider>
@@ -984,7 +983,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="8" selection-start="6898" selection-end="6898" vertical-scroll-proportion="0.36303192" vertical-offset="1932" max-vertical-offset="13845">
+        <state line="451" column="33" selection-start="19528" selection-end="19528" vertical-scroll-proportion="0.3324468" vertical-offset="6260" max-vertical-offset="13845">
           <folding />
         </state>
       </provider>
