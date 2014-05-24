@@ -166,20 +166,26 @@ class Clerk(object):
         comment_doc = printer.print_comment_document(post_id, comment_info)
 
         #댓글이 달린 포스트의 댓글 개수 속성을 1 증가키고, 댓글을 삽입한다.
-        if (self.query_executer.insert_data_to_col(comment_doc, collection['COMMENT']) and
-                self.query_executer.update_content({'_id': post_id}, {'$inc': {'md.cc': 1}}, collection['POST'])):
+        result = self.query_executer.insert_data_to_col(comment_doc, collection['COMMENT'])
+
+        if result:
+            if result != DUPLICATE:
+                self.query_executer.update_content({'_id': post_id}, {'$inc': {'md.cc': 1}}, collection['POST'])
                 #클라이언트가 댓글 작성 후에 알아야하는 _id 정보를 보내주기 위해서
                 #정해진 통신 규약에 따른 댓글 정보를 반환한다.
 
-            #위 두 정보를 바탕으로 푸시를 보낸다
-            push_certification = self.gate_keeper.issue_admin_request_header()
+                #위 두 정보를 바탕으로 푸시를 보낸다
+                push_certification = self.gate_keeper.issue_admin_request_header()
 
-            #댓글 작성 시에, 게시물 작성자에게 푸시가 가야한다.
-            bellboy.send_push_message(post_id, requester_id,
-                                      bellboy.push_types['write_comment'], interpreter.content_type['POST'],
-                                      push_certification)
+                #댓글 작성 시에, 게시물 작성자에게 푸시가 가야한다.
+                bellboy.send_push_message(post_id, requester_id,
+                                          bellboy.push_types['write_comment'], interpreter.content_type['POST'],
+                                          push_certification)
 
-            return comment_doc, server_status_code['OK']
+                return comment_doc, server_status_code['OK']
+
+            else:
+                return server_status_code['BADREQUEST']
 
         else:
             return server_status_code['SERVERERROR']
@@ -287,12 +293,12 @@ class Clerk(object):
             #클라이언트에게서 댓글 아이디만 받을 경우 해당 댓글이 속한 게시물의 아이디를 쿼리해야 한다.
             #이 쿼리를 하지 않기 위해 param에 post_id를 따로 받는다.
             #따라서 댓글을 처리할 경우 target_id에 있는 post_id를 따로 처리한다.
-            target_id, target_post = target_id[0], target_id[1]
-            existence_result = self.query_executer.check_existence_of_doc({'_id': target_id, 'md.au.ui': requester_id},
+            comment_id, post_id = target_id[0], target_id[1]
+            existence_result = self.query_executer.check_existence_of_doc({'_id': comment_id, 'md.au.ui': requester_id},
                                                                           target_type)
             if existence_result == EXIST:
-                if (self.query_executer.remove_content(target_id, target_type) and
-                        self.query_executer.update_content({'_id': target_post},
+                if (self.query_executer.remove_content(comment_id, target_type) and
+                        self.query_executer.update_content({'_id': post_id},
                                                            {'$inc': {'md.cc': -1}}, collection['POST'])):
                     return server_status_code['OK']
 
