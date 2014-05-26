@@ -290,6 +290,20 @@ class Clerk(object):
             #클라이언트에게서 댓글 아이디만 받을 경우 해당 댓글이 속한 게시물의 아이디를 쿼리해야 한다.
             #이 쿼리를 하지 않기 위해 param에 post_id를 따로 받는다.
             #따라서 댓글을 처리할 경우 target_id에 있는 post_id를 따로 처리한다.
+
+            #----------------포스트 아이디를 서버에서 처리할 경우-----------------------------------------------------------
+            #find_doc_result = self.query_executer.find_one_doc({'_id': target_id}, {'_id': 0, 'md.pi': 1}, target_type)
+
+            #if not find_doc_result:
+            #    return server_status_code['SERVERERROR']
+
+            #if find_doc_result != NOTFOUND and find_doc_result['md']['pi']:
+            #    post_id = find_doc_result['md']['pi']
+
+            #else:
+            #    return server_status_code['BADREQUEST']
+            #----------------------------------------------------------------------------------------------------------
+
             comment_id, post_id = target_id[0], target_id[1]
             existence_result = self.query_executer.check_existence_of_doc({'_id': comment_id, 'md.au.ui': requester_id},
                                                                           target_type)
