@@ -5,11 +5,12 @@ import datetime
 from bson import ObjectId
 
 from ens_app.database import mongoquery
-import hangul
-import formatchecker
+from ens_app.helper import hangul
+from ens_app.helper import formatchecker
 
 
-# MongoDB에 저장되는 각종 document(MongoDB 내의 정보 저장 단위)를 필요한 형식에 맞게 정보를 입력하여 출력해주는 모듈이다.
+# clerk 모듈에서 어플리케이션에 사용되는 데이터 구조(포스트, 댓글, 사용자 등)을 MongoDB에 저장할 때 호출된다.
+# 호출되면 clerk 모듈이 저장하려는 데이터의 구조에 매칭되는 mongodb document를 python dictionary 형태로 반환한다.
 
 
 report_msg = ('이 카테고리/태그와 어울리지 않는 움짤',
@@ -30,7 +31,7 @@ amazon_s3_address = 'http://s3-ap-northeast-1.amazonaws.com/content.gifzoop/{rev
 
 # 유저가 수집한 것이 없음을 추가 처리 없이 클라이언트에게 알리기 위해,
 # upsert를 쓰지 않기 위해서 일부러 각 수집 컬렉션을 비워둔 상태로 만들어둔다.
-def print_user_content_document(user_id, user_favorite_list):
+def get_user_content_document(user_id, user_favorite_list):
     blank_list = list()
     insert_info = {list_name: blank_list for list_name in user_favorite_list.values()}
     insert_info['_id'] = user_id
@@ -38,7 +39,7 @@ def print_user_content_document(user_id, user_favorite_list):
 
 
 #가입 정보를 바탕으로 저장될 회원 도큐먼트를 만든다.
-def print_user_document(user_info, password, access_token):
+def get_user_document(user_info, password, access_token):
     user_id = user_info['act']['id']
 
     # 유저가 페이스북으로 가입을 하는 경우, 드물게 email 주소를 받아오지 못할 수 있다
@@ -67,7 +68,7 @@ def print_user_document(user_info, password, access_token):
     return user_info
 
 
-def print_comment_document(post_id, comment_info):
+def get_comment_document(post_id, comment_info):
     comment_info['_id'] = ObjectId()
 
     comment_info['md']['pi'] = post_id
@@ -83,7 +84,7 @@ def print_comment_document(post_id, comment_info):
     return comment_info
 
 
-def print_tag_document(tag_id, category_id):
+def get_tag_document(tag_id, category_id):
     tag_doc = dict(_id=tag_id)
     tag_doc['kw'] = hangul.analyze_hangul_str(tag_id)
     tag_doc['md'] = {'cg': category_id}
@@ -95,7 +96,7 @@ def print_tag_document(tag_id, category_id):
     return tag_doc
 
 
-def print_post_document(post_info):
+def get_post_document(post_info):
     post_info['_id'] = ObjectId()
     post_info['md']['ca'] = post_info['_id'].generation_time
     post_info['md']['cc'] = 0
@@ -127,34 +128,23 @@ def print_post_document(post_info):
     return post_info, post_info['_id']
 
 
-def print_reg_id_document(registration_id):
+def get_reg_id_document(registration_id):
     return {'_id': registration_id, 'pt': True}
 
 
-def print_push_document(registration_id, user_id=None):
-    push_doc = {'ri': registration_id, 'pt': True}
-
-    if user_id:
-        push_doc['_id'] = user_id
-    else:
-        push_doc['_id'] = ObjectId()
-
-    return push_doc
-
-
-def print_report_message(target_id):
+def get_report_message(target_id):
     report_message = ReportMessage()
     return report_message.make_report_email_message(target_id)
 
 
-def print_push_payload(content_id, requester_id, push_type, target_type):
+def get_push_payload(content_id, requester_id, push_type, target_type):
     return {push_paylaod_key['content_id']: content_id,
             push_paylaod_key['requester_id']: requester_id,
             push_paylaod_key['push_type']: push_type,
             push_paylaod_key['target_type']: target_type}
 
 
-def print_report_document(reporter_id, report_type, report_text, target_type):
+def get_report_document(reporter_id, report_type, report_text, target_type):
     report = dict()
     #TODO 이메일을 넣어야하는데, db 연결 문제 때문에 추후에 수정하도록 한다.
     report['em'] = reporter_id

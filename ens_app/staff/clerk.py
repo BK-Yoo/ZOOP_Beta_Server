@@ -3,19 +3,16 @@ import boto
 import boto.ses
 from boto.s3.key import Key
 from boto.exception import S3ResponseError
-
 from pymongo import DESCENDING
 
+from ens_app import briefcase
 from ens_app.database.mongoquery import QueryExecuter
 from ens_app.database.mongoquery import content_type, DUPLICATE, EXIST, NOTFOUND
 from ens_app.database.mongodb_keeper import collection
-
 from ens_app.helper import interpreter
 from ens_app.helper.interpreter import url_param_type, server_status_code
 from ens_app.helper import hangul
 from ens_app.helper import formatchecker
-from ens_app.helper import printer
-
 import bellboy
 
 
@@ -79,7 +76,7 @@ class Clerk(object):
         password = self.gate_keeper.encrypt_user_password(raw_user_info['act']['pw'])
 
         access_token = self.gate_keeper.make_access_token()
-        user_info = printer.print_user_document(raw_user_info, password, access_token)
+        user_info = briefcase.get_user_document(raw_user_info, password, access_token)
 
         if user_info and access_token:
 
@@ -89,7 +86,7 @@ class Clerk(object):
                 return server_status_code['BADREQUEST']
 
             elif insert_result:
-                content_doc = printer.print_user_content_document(user_info['_id'], self.user_favorite_list)
+                content_doc = briefcase.get_user_content_document(user_info['_id'], self.user_favorite_list)
 
                 if self.query_executer.insert_data_to_col(content_doc, collection['FAVORITE_CONTENT']):
                     return access_token, user_info['info']['un']
@@ -135,7 +132,7 @@ class Clerk(object):
             return server_status_code['SERVERERROR']
 
     def save_gcm_registration_id(self, registration_id):
-        reg_doc = printer.print_reg_id_document(registration_id)
+        reg_doc = briefcase.get_reg_id_document(registration_id)
 
         if self.query_executer.insert_data_to_col(reg_doc, collection['PUSH']):
             return server_status_code['OK']
@@ -163,7 +160,7 @@ class Clerk(object):
             return server_status_code['SERVERERROR']
 
     def insert_comment(self, post_id, requester_id, comment_info):
-        comment_doc = printer.print_comment_document(post_id, comment_info)
+        comment_doc = briefcase.get_comment_document(post_id, comment_info)
 
         #댓글이 달린 포스트의 댓글 개수 속성을 1 증가키고, 댓글을 삽입한다.
         result = self.query_executer.insert_data_to_col(comment_doc, collection['COMMENT'])
@@ -220,7 +217,7 @@ class Clerk(object):
             inserted_tag_list = self.get_inserted_tag_list(tag_list, category_id)
 
             if inserted_tag_list:
-                post_doc, post_id = printer.print_post_document(post_info)
+                post_doc, post_id = briefcase.get_post_document(post_info)
                 post_doc['co']['tl'] = inserted_tag_list
 
                 #동영상과 썸네일이 static server에 올라갈 때까지
@@ -277,7 +274,7 @@ class Clerk(object):
             tag_id = tag_id.strip()
 
             if tag_id:
-                tag_doc = printer.print_tag_document(tag_id, category_id)
+                tag_doc = briefcase.get_tag_document(tag_id, category_id)
 
                 if self.query_executer.insert_data_to_col(tag_doc, collection['TAG']):
                     tag_list.append(tag_id)
@@ -337,7 +334,7 @@ class Clerk(object):
 
     def report_content(self, report_target_id, target_type, reporter_id, report_type, report_text):
         #신고 콜렉션에 신고 정보를 삽입한다.
-        report_msg = printer.print_report_document(reporter_id, report_type, report_text, target_type)
+        report_msg = briefcase.get_report_document(reporter_id, report_type, report_text, target_type)
 
         if report_msg:
             if self.query_executer.update_content({'_id': report_target_id, 'ct': target_type},

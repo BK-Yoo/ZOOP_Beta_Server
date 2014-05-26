@@ -1,4 +1,6 @@
 #-*- coding:utf-8 -*-
+from ens_app import briefcase
+
 __author__ = 'bkyoo'
 
 import requests
@@ -6,8 +8,6 @@ from bson import json_util
 
 import boto
 from boto.ses.exceptions import SESError
-
-from ens_app.helper import printer
 
 
 #TODO 푸시 보낼 곳 URL 명시
@@ -29,7 +29,7 @@ transcode_server_url = '172.31.29.148/tvu?pi={post_id}'
 def send_report_message(report_target_id):
     try:
         conn = boto.connect_ses()
-        subject, message = printer.print_report_message(report_target_id)
+        subject, message = briefcase.get_report_message(report_target_id)
         conn.send_email(server_email_address, subject, message, server_notification_receiver)
         return True
 
@@ -39,7 +39,7 @@ def send_report_message(report_target_id):
 
 def send_push_message(content_id, requester_id, push_type, target_type, push_certification):
     #푸시 서버한테 정보를 보낸다
-    push_paper = printer.print_push_payload(content_id, requester_id, push_type, target_type)
+    push_paper = briefcase.get_push_payload(content_id, requester_id, push_type, target_type)
     try:
         r = requests.post(push_server_url, data=json_util.dumps(push_paper), headers=push_certification, timeout=1)
 
