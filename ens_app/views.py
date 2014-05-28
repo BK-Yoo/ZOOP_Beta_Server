@@ -95,7 +95,7 @@ def register_gcm_reg_id(request, access_token=None):
 
     if param:
         registration_id = param[url_param_type['REGISTRATIONID']]
-        user_id = gate_keeper.extract_user_id_from_access_token(access_token)
+        user_id = gate_keeper.extract_user_id_from_access_token(access_token) if access_token else None
 
         if registration_id:
             if user_id:
@@ -114,7 +114,7 @@ def modify_push_acceptance(request, access_token=None):
     if param:
         registration_id = param(url_param_type['REGISTRATIONID'])
         push_acceptance = param(url_param_type['PUSH'])
-        user_id = gate_keeper.extract_user_id_from_access_token(access_token)
+        user_id = gate_keeper.extract_user_id_from_access_token(access_token) if access_token else None
 
         if (registration_id and push_acceptance and
                 clerk.update_push_acceptance(registration_id, push_acceptance, user_id)):
@@ -208,7 +208,7 @@ def get_user_upload_posts(request, access_token=None):
                                            url_param_type['COUNT'], url_param_type['THPOST'])
 
     if param and param[url_param_type['USER']]:
-        request_user_id = gate_keeper.extract_user_id_from_access_token(access_token)
+        request_user_id = gate_keeper.extract_user_id_from_access_token(access_token) if access_token else None
 
         return interpreter.pack_up_list(clerk.get_user_upload_posts(param[url_param_type['USER']],
                                                                     param[url_param_type['COUNT']],

@@ -16,6 +16,17 @@ from ens_app.helper import formatchecker
 import bellboy
 
 
+def make_list(cursor, attr=None):
+    if cursor:
+        if attr:
+            return [doc[attr] for doc in cursor], server_status_code['OK']
+
+        else:
+            return [doc for doc in cursor], server_status_code['OK']
+    else:
+        return server_status_code['SERVERERROR']
+
+
 class Clerk(object):
 
     # MongoDB로의 쿼리 작업은 모두 이곳에서 처리한다.
@@ -141,23 +152,23 @@ class Clerk(object):
             return server_status_code['SERVERERROR']
 
     def update_push_acceptance(self, registration_id, acceptance, user_id):
-        acceptance = True if acceptance == 'true' else False
+        acceptance = False if acceptance == 'false' else True
 
         #user가 푸시 허용 여부를 결정할 경우(user_id가 0이 아닌 경우)
-        #추가로 유저 정보 내의 acceptance를 바꿔준다.
-        if user_id and not self.query_executer.update_content({'ni.ri': registration_id},
-                                                              {'$set': {'ni.pt': acceptance}},
-                                                              collection['MEMBER']):
-            return server_status_code['SERVERERROR']
+        if user_id:
+            if self.query_executer.update_content({'ni.ri': registration_id},
+                                                  {'$set': {'ni.pt': acceptance}},
+                                                  collection['MEMBER']):
+                return server_status_code['OK']
 
-        #user일 경우와 아닐 경우 모두 push collection의 푸시 허용 여부를 바꿔준다.
-        if self.query_executer.update_content({'_id': registration_id},
-                                              {'$set': {'pt': acceptance}},
-                                              collection['PUSH']):
-            return server_status_code['OK']
-
+        #user가 아닐 경우 모두 push collection의 푸시 허용 여부를 바꿔준다.
         else:
-            return server_status_code['SERVERERROR']
+            if self.query_executer.update_content({'_id': registration_id},
+                                                  {'$set': {'pt': acceptance}},
+                                                  collection['PUSH']):
+                return server_status_code['OK']
+
+        return server_status_code['SERVERERROR']
 
     def insert_comment(self, post_id, requester_id, comment_info):
         comment_doc = briefcase.get_comment_document(post_id, comment_info)
@@ -290,19 +301,6 @@ class Clerk(object):
             #클라이언트에게서 댓글 아이디만 받을 경우 해당 댓글이 속한 게시물의 아이디를 쿼리해야 한다.
             #이 쿼리를 하지 않기 위해 param에 post_id를 따로 받는다.
             #따라서 댓글을 처리할 경우 target_id에 있는 post_id를 따로 처리한다.
-
-            #----------------포스트 아이디를 서버에서 처리할 경우-----------------------------------------------------------
-            #find_doc_result = self.query_executer.find_one_doc({'_id': target_id}, {'_id': 0, 'md.pi': 1}, target_type)
-
-            #if not find_doc_result:
-            #    return server_status_code['SERVERERROR']
-
-            #if find_doc_result != NOTFOUND and find_doc_result['md']['pi']:
-            #    post_id = find_doc_result['md']['pi']
-
-            #else:
-            #    return server_status_code['BADREQUEST']
-            #----------------------------------------------------------------------------------------------------------
 
             comment_id, post_id = target_id[0], target_id[1]
             existence_result = self.query_executer.check_existence_of_doc({'_id': comment_id, 'md.au.ui': requester_id},
@@ -455,12 +453,7 @@ class Clerk(object):
                                               'sc': 0}}}
             else:
                 #target_type == content_type['USER']:
-                set_query = {'$push':
-                                 {'ul': {
-                                     'ui': target_id,
-                                     'un': target_nickname,
-                                     'sc': 0}
-                                 }}
+                set_query = {'$push': {'ul': {'ui': target_id, 'un': target_nickname, 'sc': 0}}}
 
             if (self.query_executer.update_content({'_id': requester_id}, set_query, target_col) and
                     self.query_executer.update_content({'_id': target_id},
@@ -546,16 +539,6 @@ class Clerk(object):
             return server_status_code['SERVERERROR']
 
 ###################################################READ OPERATION####################################################
-    def make_list(self, cursor, attr=None):
-        if cursor:
-            if attr:
-                return [doc[attr] for doc in cursor], server_status_code['OK']
-
-            else:
-                return [doc for doc in cursor], server_status_code['OK']
-        else:
-            return server_status_code['SERVERERROR']
-
     def check_target_in_database(self, target_dict):
         if url_param_type['USERID'] in target_dict and target_dict[url_param_type['USERID']]:
             user_id = target_dict[url_param_type['USERID']]
@@ -644,7 +627,7 @@ class Clerk(object):
                                                                 self.sort_type['RECENT'],
                                                                 count,
                                                                 collection['POST'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def get_user_data(self, user_id):
         user_data_list = self.query_executer.find_one_doc({'_id': user_id}, self.target_attr['USER_DATA'],
@@ -665,7 +648,7 @@ class Clerk(object):
         attr_key = '_id'
         cursor = self.query_executer.find({attr_key: 1}, collection['CATEGORY'])
 
-        return self.make_list(cursor, attr_key)
+        return make_list(cursor, attr_key)
 
     def get_best_comment_list(self, post_id, count):
         find_query = {'md.pi': post_id,
@@ -675,7 +658,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['COMMENT'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
         #-기준점이 삭제되어서, 아무 정보도 받아오지 못했을 경우-
         #이 문제를 해결하기 위해서는, 삭제하지 않고 '삭제 처리'만 하거나,
@@ -697,7 +680,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['COMMENT'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def get_best_of_best_post_list(self, count, post_id):
         find_query = {'md.ra': {'$gte': self.popularity_threshold['BEST_OF_BEST_POST']},
@@ -711,7 +694,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['POST'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def get_best_post_list_of_category(self, category_id, count, post_id):
         find_query = {'md.ra': {'$gte': self.popularity_threshold['BEST_POST']},
@@ -726,7 +709,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['POST'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def get_recent_post_list_of_category(self, category_id, count, post_id):
         find_query = {'md.cg': category_id,
@@ -740,7 +723,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['POST'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def get_best_tags_list_of_category(self, category_id, count):
         find_query = {'md.cg': category_id,
@@ -750,7 +733,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['TAG'])
-        return self.make_list(cursor, '_id')
+        return make_list(cursor, '_id')
 
     def get_best_post_list_of_tag(self, tag_id, count, post_id):
         find_query = {'co.tl': tag_id,
@@ -765,7 +748,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['POST'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def get_recent_post_list_in_tag(self, tag_id, count, post_id):
         find_query = {'co.tl': tag_id,
@@ -779,7 +762,7 @@ class Clerk(object):
 
         cursor = self.query_executer.find_target_list_sorted_by(find_query, attr_query, sort_query, count,
                                                                 collection['POST'])
-        return self.make_list(cursor)
+        return make_list(cursor)
 
     def click_content(self, target_id, target_type):
         find_query = {'info.un': target_id} if target_type == content_type['USER'] else {'_id': target_id}
@@ -820,7 +803,8 @@ class Clerk(object):
             except TypeError:
                 return server_status_code['SERVERERROR']
 
-        else: #TAG LIST
+        else:
+            #TAG LIST
             if target_id == "''":
                 find_query = {}
             else:
@@ -829,7 +813,7 @@ class Clerk(object):
 
             cursor = self.query_executer.find_target_list_sorted_by(find_query, {'_id': 1}, self.sort_type['HOT'],
                                                                     count, collection['TAG'])
-            return self.make_list(cursor, '_id')
+            return make_list(cursor, '_id')
 
     def check_right_upload(self, target_id, uploader_id, target_type):
         if target_type == content_type['POST']:
