@@ -51,7 +51,7 @@ def get_user_document(user_info, password, access_token):
             user_info['act']['id'] = user_info['act']['pw']
 
         else:
-            return 0, 0
+            return False
 
     #access_token의 주인 아이디가 곧 새로운 회원의 아이디다
     user_info['_id'] = access_token['md']['oi']
