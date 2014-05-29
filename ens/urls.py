@@ -2,6 +2,9 @@ from django.conf.urls import patterns
 
 urlpatterns = patterns('',
                        (r'^check/','ens_app.views.check_health'),
+
+                       (r'^gfm/',  'ens_app.views.get_first_message'),
+
                        (r'^grt/',  'ens_app.views.get_request_token'),
                        (r'^msu/',  'ens_app.views.member_sign_up'),
                        (r'^ml/',   'ens_app.views.member_login'),
@@ -59,8 +62,9 @@ urlpatterns = patterns('',
 
                        (r'^td/',  'ens_app.views.message_to_developer'),
 
-                       (r'^ceu$',  'ens_app.views.complete_external_upload'),
+                       (r'^sgu$',  'ens_app.views.send_gfycat_url'),
 
+                       (r'^ceu$',  'ens_app.views.complete_external_upload'),
                        (r'^gfr$',  'ens_app.views.get_flag_report'),
                        (r'^dac$',  'ens_app.views.delete_any_content'),
                        )

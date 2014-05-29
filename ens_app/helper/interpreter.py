@@ -30,6 +30,8 @@ file_format_type = {'MP4': 'video/mp4', 'JPEG': 'image/jpeg'}
 
 response_content_type = 'application/json'
 
+amazon_s3_url = 'http://s3-ap-northeast-1.amazonaws.com/content.gifzoop/{reversed_post_id}/p/t2/v.mp4'
+
 
 class UrlParameter(object):
 
@@ -306,10 +308,8 @@ def pack_up_list(result, list_key):
             return json_response(server_status_code['SERVERERROR'])
 
         result = {list_key: data_list, 'ct': len(data_list)} if data_list else {list_key: [], 'ct': 0}, status_code
-        return json_response(result)
 
-    else:
-        return json_response(result)
+    return json_response(result)
 
 
 def pack_up_comment(result):
@@ -327,3 +327,16 @@ def pack_up_comment(result):
 
     else:
         return json_response(result)
+
+
+def pack_up_amazon_s3_video_url(result):
+    if isinstance(result, tuple):
+        try:
+            post_id, status_code = result
+
+        except (KeyError, ValueError):
+            return json_response(server_status_code['SERVERERROR'])
+
+        result = {'avu': amazon_s3_url.format(reversed_post_id=post_id.__str__()[::-1])}
+
+    return json_response(result)

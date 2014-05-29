@@ -27,6 +27,11 @@ def make_list(cursor, attr=None):
         return server_status_code['SERVERERROR']
 
 
+def make_initial_message():
+    return '줍이에요!!'
+
+
+
 class Clerk(object):
 
     # MongoDB로의 쿼리 작업은 모두 이곳에서 처리한다.
@@ -183,12 +188,12 @@ class Clerk(object):
                 #정해진 통신 규약에 따른 댓글 정보를 반환한다.
 
                 #위 두 정보를 바탕으로 푸시를 보낸다
-                push_certification = self.gate_keeper.issue_admin_request_header()
+                #push_certification = self.gate_keeper.issue_admin_request_header()
 
                 #댓글 작성 시에, 게시물 작성자에게 푸시가 가야한다.
-                bellboy.send_push_message(post_id, requester_id,
-                                          bellboy.push_types['write_comment'], interpreter.content_type['POST'],
-                                          push_certification)
+                #bellboy.send_push_message(post_id, requester_id,
+                #                          bellboy.push_types['write_comment'], interpreter.content_type['POST'],
+                #                          push_certification)
 
                 return comment_doc, server_status_code['OK']
 
@@ -390,15 +395,15 @@ class Clerk(object):
                                                        {'$inc': {'md.lc': 1, 'md.ra': self.rating_score['LIKE']}},
                                                        target_type)):
 
-                if target_type == content_type['COMMENT']:
-                    push_type = bellboy.push_types['like_comment']
+                #if target_type == content_type['COMMENT']:
+                #    push_type = bellboy.push_types['like_comment']
 
-                else:
-                    push_type = bellboy.push_types['like_post']
+                #else:
+                #    push_type = bellboy.push_types['like_post']
 
                 #위 두 정보를 바탕으로 푸시를 보낸다
-                push_certification = self.gate_keeper.issue_admin_request_header()
-                bellboy.send_push_message(content_id, requester_id, push_type, target_type, push_certification)
+                #push_certification = self.gate_keeper.issue_admin_request_header()
+                #bellboy.send_push_message(content_id, requester_id, push_type, target_type, push_certification)
                 return server_status_code['OK']
 
             else:
@@ -825,8 +830,9 @@ class Clerk(object):
             return True if target_id == uploader_id else False
 
     def complete_upload_post(self, target_id):
-        #문서 정보 생성시 삭제 처리가 되어있던 게시물에 대하여,
-        #파일이 업로드되면 생성표시로 바꿔준다.
+        # 실제 파일 업로드가 성공하면 임시 포스트 콜렉션에 있는 포스트 문서를
+        # 포스트 콜렉션으로 옮긴다.
+
         find_doc_result = self.query_executer.find_one_doc({'_id': target_id}, None, collection['TEMP_POST'])
         insert_result = find_doc_result and self.query_executer.insert_data_to_col(find_doc_result, collection['POST'])
 
@@ -834,8 +840,8 @@ class Clerk(object):
             return server_status_code['BADREQUEST']
 
         elif insert_result and self.query_executer.remove_content(target_id, collection['TEMP_POST']):
-            bellboy.send_transcode_request(target_id)
-            return server_status_code['OK']
+            #bellboy.send_transcode_request(target_id)
+            return target_id, server_status_code['OK']
 
         else:
             return server_status_code['SERVERERROR']
@@ -928,3 +934,30 @@ class Clerk(object):
 
         else:
             return server_status_code['SERVERERROR']
+
+    def send_app_first_message(self):
+        message = make_initial_message()
+        return message, server_status_code['OK']
+
+    def save_gfycat_url_at_post(self, target_id, target_type, requester_id, gfycat_mp4_url):
+        result = self.query_executer.find_one_doc({'_id': target_id, 'md.au.ui': requester_id},
+                                                  {'_id': 1, 'md.vu': 1},
+                                                  target_type)
+
+        if result:
+            if result == NOTFOUND:
+                return server_status_code['BADREQUEST']
+
+            else:
+                try:
+                    url_list = result['md']['vu']
+
+                except KeyError:
+                    return server_status_code['SERVERERROR']
+
+                url_list[0] = gfycat_mp4_url
+
+                if self.query_executer.update_content({'_id': target_id}, {'$set': {'md.vu': url_list}}, target_type):
+                    return server_status_code['OK']
+
+        return server_status_code['SERVERERROR']

@@ -19,6 +19,10 @@ def check_health(request):
     return json_response(server_status_code['OK'])
 
 
+def get_first_message(request):
+    return json_response(clerk.send_app_first_message())
+
+
 def admin_access(call):
     def _admin_access(request):
         return call(request) if gate_keeper.is_admin(request) else json_response(server_status_code['FORBIDDEN'])
@@ -569,7 +573,7 @@ def send_post_video(request, access_token):
                                        attach_ft['VIDEO'], attach_ft['SMALL_THUMBNAIL'], attach_ft['BIG_THUMBNAIL'])
 
             if result == server_status_code['OK']:
-                return json_response(clerk.complete_upload_post(target_id))
+                return interpreter.pack_up_amazon_s3_video_url(clerk.complete_upload_post(target_id))
 
             else:
                 return json_response(result)
@@ -609,6 +613,23 @@ def message_to_developer(request):
 
 
 @member_access
+def send_gfycat_url(request, access_token):
+    param = extract_parameter_from_request(request, url_param_type['POST'])
+    url_info = interpreter.load_json_from_request(request)
+
+    if param and formatchecker.is_correct_data_format(url_info, formatchecker.data_type['F_MSG']):
+        target_id, target_type = interpreter.get_target_content_info(param)
+        user_id = gate_keeper.extract_user_id_from_access_token(access_token)
+        gfycat_mp4_url = url_info['gmu']
+
+        if target_id and target_type and user_id and gfycat_mp4_url:
+            return json_response(clerk.save_gfycat_url_at_post(target_id, target_type, user_id, gfycat_mp4_url))
+
+    return json_response(server_status_code['BADREQUEST'])
+
+
+#############################################Request For Upload Program#####################################
+@member_access
 def complete_external_upload(request, access_token):
     param = extract_parameter_from_request(request, url_param_type['POST'])
 
@@ -643,4 +664,5 @@ def delete_any_content(request):
         if target_id and target_type:
             return json_response(clerk.delete_content_by_admin(target_id, target_type))
 
-    return json_response(result=server_status_code['BADREQUEST'])
+    return json_response(server_status_code['BADREQUEST'])
+######################################################################################################################p
