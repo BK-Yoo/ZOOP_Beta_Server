@@ -243,7 +243,7 @@ class GateKeeper(object):
             user_doc = self.member_col.find_and_modify({'_id': access_token['md']['oi']},
                                                        {'$set': {'md.at': new_access_token}})
             nickname = user_doc['info']['un']
-            birthday = user_doc['info']['b']
+            birthday = user_doc['info']['b']['y']
             gender = user_doc['info']['g']
 
             return new_access_token, nickname, birthday, gender

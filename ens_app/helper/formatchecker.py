@@ -64,7 +64,6 @@ data_format = {data_type['NEW_POST']: [#게시물 내용
                data_type['F_MSG']: [(ROOT_PATH, 'gmu')]}
 
 
-
 def is_correct_data_format(input_data, input_data_type):
     return all(check_key_in_dict(input_data, check_path, target_key)
                for check_path, target_key in data_format[input_data_type]) if input_data else False

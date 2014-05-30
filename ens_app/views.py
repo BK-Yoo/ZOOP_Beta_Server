@@ -243,7 +243,7 @@ def get_category_list(request):
     return interpreter.pack_up_list(clerk.get_category_list(), response_list_type['CATEGORYLIST'])
 
 
-@guest_request
+
 def get_best_of_best_posts(request):
     param = extract_parameter_from_request(request, url_param_type['COUNT'], url_param_type['THPOST'])
 

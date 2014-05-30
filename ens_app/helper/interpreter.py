@@ -32,6 +32,7 @@ response_content_type = 'application/json'
 
 amazon_s3_url = 'http://s3-ap-northeast-1.amazonaws.com/content.gifzoop/{reversed_post_id}/p/t2/v.mp4'
 
+content_limit = 40
 
 class UrlParameter(object):
 
@@ -42,7 +43,6 @@ class UrlParameter(object):
         self.key = url_param
         self.pars_type = self.check_type_of_param()
         self.value = self.convert_parameter(req_get)
-        self.content_limit = 40
 
     def get_key(self):
         return self.key
@@ -154,8 +154,8 @@ class UrlParameter(object):
     #한 번에 불러오는 게시물의 개수를 제한한다.
     #이 클래스의 self.content_number_restriction에 제한 숫자가 지정되어있다.
     def restrict_number_of_contents(self, count):
-        if count > self.content_limit:
-            return self.content_limit
+        if count > content_limit:
+            return content_limit
 
         elif count <= 0:
             return 0
