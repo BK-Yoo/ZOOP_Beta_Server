@@ -28,8 +28,11 @@ def make_list(cursor, attr=None):
 
 
 def make_initial_message():
-    return '줍이에요!!'
+    is_necessary_to_download_from_new_url = False
+    external_download_url = ''
+    message_for_users = 'hello zoop'
 
+    return {'ind': is_necessary_to_download_from_new_url, 'edu': external_download_url, 'msg': message_for_users}
 
 
 class Clerk(object):
