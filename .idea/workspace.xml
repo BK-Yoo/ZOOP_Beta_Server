@@ -2,13 +2,11 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/ens_app/briefcase.py" line="95" />
-    <bookmark url="file://$PROJECT_DIR$/ens_app/staff/clerk.py" description="if user_info and access_token:" line="105" />
+    <bookmark url="file://$PROJECT_DIR$/ens_app/staff/clerk.py" description="if user_info and access_token:" line="95" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661a88ae-fcb7-44e2-9947-27ec3c528ba1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/staff/clerk.py" afterPath="$PROJECT_DIR$/ens_app/staff/clerk.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/helper/formatchecker.py" afterPath="$PROJECT_DIR$/ens_app/helper/formatchecker.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/views.py" afterPath="$PROJECT_DIR$/ens_app/views.py" />
     </list>
     <ignored path="ens.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,46 +23,16 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="clerk.py" pinned="false" current="true" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="49" column="0" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.9709379" vertical-offset="0" max-vertical-offset="14565">
-                    <folding>
-                      <element signature="e#24#35#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="formatchecker.py" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="38" column="10" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1410">
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="ens" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ens_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="66" selection-start="1050" selection-end="1050" vertical-scroll-proportion="0.5760709" vertical-offset="0" max-vertical-offset="10155">
+            <state line="26" column="66" selection-start="1050" selection-end="1050" vertical-scroll-proportion="-11.470589" vertical-offset="0" max-vertical-offset="10155">
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
               </folding>
@@ -85,6 +53,26 @@
         <entry file="file://$PROJECT_DIR$/ens_app/briefcase.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2775">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clerk.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="933" column="13" selection-start="40042" selection-end="40042" vertical-scroll-proportion="0.2819149" vertical-offset="13783" max-vertical-offset="14595">
+              <folding>
+                <element signature="e#24#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formatchecker.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="9" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="1410">
               <folding />
             </state>
           </provider>
@@ -124,9 +112,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="52" />
-    <option name="width" value="800" />
-    <option name="height" value="848" />
+    <option name="y" value="24" />
+    <option name="width" value="1600" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -581,7 +569,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="52" width="800" height="848" extended-state="4" />
+    <frame x="0" y="24" width="1600" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -909,7 +897,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="66" selection-start="1050" selection-end="1050" vertical-scroll-proportion="0.5760709" vertical-offset="0" max-vertical-offset="10155">
+        <state line="26" column="66" selection-start="1050" selection-end="1050" vertical-scroll-proportion="-11.470589" vertical-offset="0" max-vertical-offset="10155">
           <folding>
             <element signature="e#24#67#0" expanded="true" />
           </folding>
@@ -918,14 +906,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="10" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1410">
+        <state line="22" column="9" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="1410">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.9709379" vertical-offset="0" max-vertical-offset="14565">
+        <state line="933" column="13" selection-start="40042" selection-end="40042" vertical-scroll-proportion="0.2819149" vertical-offset="13783" max-vertical-offset="14595">
           <folding>
             <element signature="e#24#35#0" expanded="true" />
           </folding>

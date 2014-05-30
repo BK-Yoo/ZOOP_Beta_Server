@@ -15,7 +15,8 @@ from ens_app.helper import hangul
 from ens_app.helper import formatchecker
 import bellboy
 
-current_client_package_name = 'com.nalby.zoop'
+
+
 
 def make_list(cursor, attr=None):
     if cursor:
@@ -26,19 +27,6 @@ def make_list(cursor, attr=None):
             return [doc for doc in cursor], server_status_code['OK']
     else:
         return server_status_code['SERVERERROR']
-
-
-def make_initial_message(package_name):
-    if current_client_package_name == package_name:
-        is_necessary_to_download_from_new_url = False
-        external_download_url = ''
-        message_for_users = ''
-    else:
-        is_necessary_to_download_from_new_url = True
-        external_download_url = 'http://googleplay~~~'
-        message_for_users = 'zoop이 새로운 어플리케이션으로 재 등장하였습니다!!'
-
-    return {'ind': is_necessary_to_download_from_new_url, 'edu': external_download_url, 'msg': message_for_users}
 
 
 class Clerk(object):
@@ -95,6 +83,8 @@ class Clerk(object):
         # 아래와 같은 dictionary를 이용한다.
         self.user_favorite_list = dict(COLLECT_POST='cpl', LIKE_POST='lpl', LIKE_COMMENT='lcl',
                                        FAVORITE_USER='ul', FAVORITE_TAG='tl')
+
+        self.current_client_package_name = 'com.nalby.zoop'
 
 ###################################################WRITE OPERATION####################################################
     def sign_up(self, raw_user_info):
@@ -944,8 +934,20 @@ class Clerk(object):
         else:
             return server_status_code['SERVERERROR']
 
+    def make_initial_message(self, package_name):
+        if self.current_client_package_name == package_name:
+            is_necessary_to_download_from_new_url = False
+            external_download_url = ''
+            message_for_users = ''
+        else:
+            is_necessary_to_download_from_new_url = True
+            external_download_url = 'http://googleplay~~~'
+            message_for_users = 'zoop이 새로운 어플리케이션으로 재 등장하였습니다!!'
+
+        return {'ind': is_necessary_to_download_from_new_url, 'edu': external_download_url, 'msg': message_for_users}
+
     def send_app_first_message(self, package_name):
-        message = make_initial_message(package_name)
+        message = self.make_initial_message(package_name)
         return message, server_status_code['OK']
 
     def save_gfycat_url_at_post(self, target_id, target_type, requester_id, gfycat_mp4_url):
