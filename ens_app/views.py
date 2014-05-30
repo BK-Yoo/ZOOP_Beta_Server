@@ -24,7 +24,10 @@ def get_first_message(request):
 
     if formatchecker.is_correct_data_format(package_info, formatchecker.data_type['PKG']):
         package_name = package_info['pkg']
-    return json_response(clerk.send_app_first_message(package_name))
+        return json_response(clerk.send_app_first_message(package_name))
+
+    else:
+        return json_response(server_status_code['BADREQUEST'])
 
 
 def admin_access(call):
@@ -577,7 +580,7 @@ def send_post_video(request, access_token):
                                        attach_ft['VIDEO'], attach_ft['SMALL_THUMBNAIL'], attach_ft['BIG_THUMBNAIL'])
 
             if result == server_status_code['OK']:
-                return interpreter.pack_up_amazon_s3_videto_url(clerk.complete_upload_post(target_id))
+                return interpreter.pack_up_amazon_s3_video_url(clerk.complete_upload_post(target_id))
 
             else:
                 return json_response(result)
