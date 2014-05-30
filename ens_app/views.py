@@ -243,7 +243,7 @@ def get_category_list(request):
     return interpreter.pack_up_list(clerk.get_category_list(), response_list_type['CATEGORYLIST'])
 
 
-
+@guest_request
 def get_best_of_best_posts(request):
     param = extract_parameter_from_request(request, url_param_type['COUNT'], url_param_type['THPOST'])
 
@@ -573,7 +573,7 @@ def send_post_video(request, access_token):
                                        attach_ft['VIDEO'], attach_ft['SMALL_THUMBNAIL'], attach_ft['BIG_THUMBNAIL'])
 
             if result == server_status_code['OK']:
-                return interpreter.pack_up_amazon_s3_video_url(clerk.complete_upload_post(target_id))
+                return interpreter.pack_up_amazon_s3_videto_url(clerk.complete_upload_post(target_id))
 
             else:
                 return json_response(result)
