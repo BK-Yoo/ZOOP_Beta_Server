@@ -81,7 +81,7 @@ def member_sign_up(request):
     raw_user_info = interpreter.load_json_from_request(request)
 
     if formatchecker.is_correct_data_format(raw_user_info, formatchecker.data_type['NEW_MEM']):
-        return interpreter.pack_up_access_token(clerk.sign_up(raw_user_info))
+        return interpreter.pack_up_login_info(clerk.sign_up(raw_user_info))
 
     else:
         return json_response(server_status_code['BADREQUEST'])
@@ -90,7 +90,7 @@ def member_sign_up(request):
 #내부적으로 회원 체크하고 있음.
 @guest_request
 def member_login(request):
-    return interpreter.pack_up_access_token(gate_keeper.issue_access_token(request))
+    return interpreter.pack_up_login_info(gate_keeper.member_login_check(request))
 
 
 @different_service_by_member_type

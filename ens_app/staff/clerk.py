@@ -946,18 +946,12 @@ class Clerk(object):
         result = self.query_executer.find_one_doc({'_id': target_id, 'md.au.ui': requester_id},
                                                   {'_id': 1, 'md.vu': 1},
                                                   target_type)
-
         if result:
             if result == NOTFOUND:
                 return server_status_code['BADREQUEST']
 
             else:
-                try:
-                    url_list = result['md']['vu']
-
-                except KeyError:
-                    return server_status_code['SERVERERROR']
-
+                url_list = result['md']['vu']
                 url_list[0] = gfycat_mp4_url
 
                 if self.query_executer.update_content({'_id': target_id}, {'$set': {'md.vu': url_list}}, target_type):

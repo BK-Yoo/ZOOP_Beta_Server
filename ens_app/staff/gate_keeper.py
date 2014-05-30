@@ -232,7 +232,7 @@ class GateKeeper(object):
 
 
     @safe_token_get_call
-    def issue_access_token(self, request):
+    def member_login_check(self, request):
         #유저의 엑세스 토큰을 불러온다.
         access_token = self.authenticate_guest(request)
 
@@ -240,9 +240,13 @@ class GateKeeper(object):
         #잘 반환이 되었다면, 회원임이 증명되고 새로운 엑세스 토큰을 발급한다
         if access_token:
             new_access_token = self.make_access_token(access_token['md']['oi'])
-            nickname = self.member_col.find_and_modify({'_id': access_token['md']['oi']},
-                                                       {'$set': {'md.at': new_access_token}})['info']['un']
-            return new_access_token, nickname
+            user_doc = self.member_col.find_and_modify({'_id': access_token['md']['oi']},
+                                                       {'$set': {'md.at': new_access_token}})
+            nickname = user_doc['info']['un']
+            birthday = user_doc['info']['b']
+            gender = user_doc['info']['g']
+
+            return new_access_token, nickname, birthday, gender
 
         else:
             return interpreter.server_status_code['FORBIDDEN']

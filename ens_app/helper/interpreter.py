@@ -280,13 +280,14 @@ def pack_up_request_token(request_token):
     return json_response(result)
 
 
-def pack_up_access_token(result):
+def pack_up_login_info(result):
     if isinstance(result, tuple):
         try:
-            access_token, user_nickname = result
+            access_token, user_nickname, user_birthday, user_gender = result
 
             if access_token:
-                result = ({'at': access_token, 'ui': access_token['md']['oi'], 'un': user_nickname},
+                result = ({'at': access_token, 'ui': access_token['md']['oi'], 'un': user_nickname,
+                           'b': user_birthday, 'g': user_gender},
                           server_status_code['OK'])
                 return json_response(result)
 
