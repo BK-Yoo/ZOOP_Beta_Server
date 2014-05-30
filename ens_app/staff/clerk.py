@@ -108,7 +108,7 @@ class Clerk(object):
                 content_doc = briefcase.get_user_content_document(user_info['_id'], self.user_favorite_list)
 
                 if self.query_executer.insert_data_to_col(content_doc, collection['FAVORITE_CONTENT']):
-                    return access_token, user_info['info']['un']
+                    return access_token, user_info['info']['un'], user_info['info']['b'], user_info['info']['g']
 
             return server_status_code['SERVERERROR']
 

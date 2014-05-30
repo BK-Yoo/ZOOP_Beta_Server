@@ -109,7 +109,7 @@ def get_post_document(post_info):
     #2014.05.18 - 'vu'가 하나의 스트링을 갖는 dict이 아니라 URL과 해당 정보를 표현하는 키로 이루어진 dict을 갖는다.
 
     #[ 'gfycat mp4 url', 'crawling gif url', 'aws s3 mp4 url', 'gfycat gif url', 'gfycat webm url' ]
-    video_url_list = ['', '', '', '', '']
+    video_url_list = ['', '', '', '']
     video_url_list[2] = amazon_s3_address.format(reversed_post_id=post_info['_id'].__str__()[::-1])
 
     if 'vu' in post_info['md']:

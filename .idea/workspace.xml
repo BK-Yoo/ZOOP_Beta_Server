@@ -8,9 +8,6 @@
     <list default="true" id="661a88ae-fcb7-44e2-9947-27ec3c528ba1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/briefcase.py" afterPath="$PROJECT_DIR$/ens_app/briefcase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/staff/clerk.py" afterPath="$PROJECT_DIR$/ens_app/staff/clerk.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/staff/gate_keeper.py" afterPath="$PROJECT_DIR$/ens_app/staff/gate_keeper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/helper/interpreter.py" afterPath="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/views.py" afterPath="$PROJECT_DIR$/ens_app/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ens.iws" />
@@ -52,10 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gate_keeper.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="gate_keeper.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ens_app/staff/gate_keeper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="0" selection-start="1383" selection-end="1383" vertical-scroll-proportion="-0.16157205" vertical-offset="711" max-vertical-offset="4080">
+            <state line="237" column="0" selection-start="7565" selection-end="7565" vertical-scroll-proportion="0.0" vertical-offset="2718" max-vertical-offset="4080">
               <folding />
             </state>
           </provider>
@@ -64,7 +61,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ens_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="43" selection-start="2745" selection-end="2745" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="10095">
+            <state line="65" column="0" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="10095">
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
               </folding>
@@ -72,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clerk.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="clerk.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14265">
+            <state line="156" column="0" selection-start="6424" selection-end="6424" vertical-scroll-proportion="0.9540582" vertical-offset="1507" max-vertical-offset="14265">
               <folding />
             </state>
           </provider>
@@ -111,7 +108,7 @@
       <file leaf-file-name="briefcase.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ens_app/briefcase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="31" selection-start="5637" selection-end="5637" vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="2775">
+            <state line="56" column="47" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.0" vertical-offset="591" max-vertical-offset="2775">
               <folding />
             </state>
           </provider>
@@ -142,10 +139,10 @@
         <option value="$PROJECT_DIR$/ens_app/database/mongodb_keeper.py" />
         <option value="$PROJECT_DIR$/ens_app/helper/formatchecker.py" />
         <option value="$PROJECT_DIR$/ens/urls.py" />
-        <option value="$PROJECT_DIR$/ens_app/briefcase.py" />
-        <option value="$PROJECT_DIR$/ens_app/staff/clerk.py" />
         <option value="$PROJECT_DIR$/ens_app/staff/gate_keeper.py" />
         <option value="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
+        <option value="$PROJECT_DIR$/ens_app/staff/clerk.py" />
+        <option value="$PROJECT_DIR$/ens_app/briefcase.py" />
         <option value="$PROJECT_DIR$/ens_app/views.py" />
       </list>
     </option>
@@ -314,6 +311,7 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../gfycatserver" />
     <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="SearchEverywhereHistory" value="" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -646,7 +644,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -878,9 +876,16 @@
         <state line="63" column="40" selection-start="2546" selection-end="2546" vertical-scroll-proportion="0.41558442" vertical-offset="625" max-vertical-offset="1395" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/briefcase.py">
+    <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="31" selection-start="5637" selection-end="5637" vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="2775">
+        <state line="252" column="37" selection-start="8644" selection-end="8644" vertical-scroll-proportion="0.0" vertical-offset="3195" max-vertical-offset="5085">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ens/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="24" selection-start="3220" selection-end="3220" vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="1125">
           <folding />
         </state>
       </provider>
@@ -892,9 +897,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens/urls.py">
+    <entry file="file://$PROJECT_DIR$/ens_app/briefcase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="24" selection-start="3220" selection-end="3220" vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="1125">
+        <state line="56" column="47" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.0" vertical-offset="591" max-vertical-offset="2775">
           <folding />
         </state>
       </provider>
@@ -913,32 +918,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
+    <entry file="file://$PROJECT_DIR$/ens_app/staff/gate_keeper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="37" selection-start="8644" selection-end="8644" vertical-scroll-proportion="0.0" vertical-offset="3195" max-vertical-offset="5085">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14265">
+        <state line="237" column="0" selection-start="7565" selection-end="7565" vertical-scroll-proportion="0.0" vertical-offset="2718" max-vertical-offset="4080">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="43" selection-start="2745" selection-end="2745" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="10095">
+        <state line="65" column="0" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="10095">
           <folding>
             <element signature="e#24#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/staff/gate_keeper.py">
+    <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1383" selection-end="1383" vertical-scroll-proportion="-0.16157205" vertical-offset="711" max-vertical-offset="4080">
+        <state line="156" column="0" selection-start="6424" selection-end="6424" vertical-scroll-proportion="0.9540582" vertical-offset="1507" max-vertical-offset="14265">
           <folding />
         </state>
       </provider>
