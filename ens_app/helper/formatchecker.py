@@ -11,7 +11,8 @@ data_type = {'NEW_POST': 0,
              'MESG': 7,
              'POST_FILE': 8,
              'PROFILE_FILE': 9,
-             'F_MSG': 10}
+             'F_MSG': 10,
+             'PKG': 11}
 
 ROOT_PATH = 0
 
@@ -61,7 +62,8 @@ data_format = {data_type['NEW_POST']: [#게시물 내용
 
                data_type['POST_FILE']: [(ROOT_PATH, 'v'), (ROOT_PATH, 'st'), (ROOT_PATH, 'bt')],
                data_type['PROFILE_FILE']: [(ROOT_PATH, 'bp'), (ROOT_PATH, 'sp')],
-               data_type['F_MSG']: [(ROOT_PATH, 'gmu')]}
+               data_type['F_MSG']: [(ROOT_PATH, 'gmu')],
+               data_type['PKG']: [(ROOT_PATH, 'pkg')]}
 
 
 def is_correct_data_format(input_data, input_data_type):

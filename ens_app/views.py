@@ -20,7 +20,11 @@ def check_health(request):
 
 
 def get_first_message(request):
-    return json_response(clerk.send_app_first_message())
+    package_info = interpreter.load_json_from_request(request)
+
+    if formatchecker.is_correct_data_format(package_info, formatchecker.data_type['PKG']):
+        package_name = package_info['pkg']
+    return json_response(clerk.send_app_first_message(package_name))
 
 
 def admin_access(call):

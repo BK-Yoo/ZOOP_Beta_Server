@@ -15,6 +15,7 @@ from ens_app.helper import hangul
 from ens_app.helper import formatchecker
 import bellboy
 
+current_client_package_name = 'com.nalby.zoop'
 
 def make_list(cursor, attr=None):
     if cursor:
@@ -27,10 +28,15 @@ def make_list(cursor, attr=None):
         return server_status_code['SERVERERROR']
 
 
-def make_initial_message():
-    is_necessary_to_download_from_new_url = False
-    external_download_url = ''
-    message_for_users = 'hello zoop'
+def make_initial_message(package_name):
+    if current_client_package_name == package_name:
+        is_necessary_to_download_from_new_url = False
+        external_download_url = ''
+        message_for_users = ''
+    else:
+        is_necessary_to_download_from_new_url = True
+        external_download_url = 'http://googleplay~~~'
+        message_for_users = 'zoop이 새로운 어플리케이션으로 재 등장하였습니다!!'
 
     return {'ind': is_necessary_to_download_from_new_url, 'edu': external_download_url, 'msg': message_for_users}
 
@@ -938,8 +944,8 @@ class Clerk(object):
         else:
             return server_status_code['SERVERERROR']
 
-    def send_app_first_message(self):
-        message = make_initial_message()
+    def send_app_first_message(self, package_name):
+        message = make_initial_message(package_name)
         return message, server_status_code['OK']
 
     def save_gfycat_url_at_post(self, target_id, target_type, requester_id, gfycat_mp4_url):

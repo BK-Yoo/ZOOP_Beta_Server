@@ -2,11 +2,13 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/ens_app/briefcase.py" line="95" />
-    <bookmark url="file://$PROJECT_DIR$/ens_app/staff/clerk.py" description="if user_info and access_token:" line="99" />
+    <bookmark url="file://$PROJECT_DIR$/ens_app/staff/clerk.py" description="if user_info and access_token:" line="105" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661a88ae-fcb7-44e2-9947-27ec3c528ba1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/helper/interpreter.py" afterPath="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/staff/clerk.py" afterPath="$PROJECT_DIR$/ens_app/staff/clerk.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/helper/formatchecker.py" afterPath="$PROJECT_DIR$/ens_app/helper/formatchecker.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/views.py" afterPath="$PROJECT_DIR$/ens_app/views.py" />
     </list>
     <ignored path="ens.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,43 +25,46 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="clerk.py" pinned="false" current="true" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="49" column="0" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.9709379" vertical-offset="0" max-vertical-offset="14565">
+                    <folding>
+                      <element signature="e#24#35#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="formatchecker.py" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="38" column="10" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1410">
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="ens" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="mongoquery.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens_app/database/mongoquery.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="26" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hangul.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens_app/helper/hangul.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="35" selection-start="1253" selection-end="1253" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1065">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gate_keeper.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens_app/staff/gate_keeper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="212" column="0" selection-start="6724" selection-end="6724" vertical-scroll-proportion="0.0" vertical-offset="2876" max-vertical-offset="4080">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ens_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="583" column="14" selection-start="23700" selection-end="23700" vertical-scroll-proportion="-13.205882" vertical-offset="8296" max-vertical-offset="10095">
+            <state line="26" column="66" selection-start="1050" selection-end="1050" vertical-scroll-proportion="0.5760709" vertical-offset="0" max-vertical-offset="10155">
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
               </folding>
@@ -67,48 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clerk.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="839" column="19" selection-start="36058" selection-end="36058" vertical-scroll-proportion="-13.911765" vertical-offset="12112" max-vertical-offset="14475">
-              <folding>
-                <element signature="e#24#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="formatchecker.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="0" selection-start="2563" selection-end="2563" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1380">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="interpreter.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="interpreter.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="338" column="67" selection-start="11562" selection-end="11562" vertical-scroll-proportion="0.907994" vertical-offset="4333" max-vertical-offset="5085">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="24" selection-start="3220" selection-end="3220" vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="1125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mongodb_keeper.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ens_app/database/mongodb_keeper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="70" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="1050">
+            <state line="328" column="9" selection-start="11285" selection-end="11285" vertical-scroll-proportion="0.0" vertical-offset="4333" max-vertical-offset="5085">
               <folding />
             </state>
           </provider>
@@ -148,16 +115,15 @@
         <option value="$PROJECT_DIR$/ens_app/database/mongodb_keeper.py" />
         <option value="$PROJECT_DIR$/ens/urls.py" />
         <option value="$PROJECT_DIR$/ens_app/briefcase.py" />
-        <option value="$PROJECT_DIR$/ens_app/helper/formatchecker.py" />
         <option value="$PROJECT_DIR$/ens_app/staff/gate_keeper.py" />
-        <option value="$PROJECT_DIR$/ens_app/staff/clerk.py" />
-        <option value="$PROJECT_DIR$/ens_app/views.py" />
         <option value="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
+        <option value="$PROJECT_DIR$/ens_app/helper/formatchecker.py" />
+        <option value="$PROJECT_DIR$/ens_app/views.py" />
+        <option value="$PROJECT_DIR$/ens_app/staff/clerk.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="800" />
     <option name="y" value="52" />
     <option name="width" value="800" />
     <option name="height" value="848" />
@@ -615,7 +581,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="800" y="52" width="800" height="848" extended-state="4" />
+    <frame x="0" y="52" width="800" height="848" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -934,35 +900,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
+    <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="2563" selection-end="2563" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1380">
+        <state line="328" column="9" selection-start="11285" selection-end="11285" vertical-scroll-proportion="0.0" vertical-offset="4333" max-vertical-offset="5085">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="839" column="19" selection-start="36058" selection-end="36058" vertical-scroll-proportion="-13.911765" vertical-offset="12112" max-vertical-offset="14475">
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="583" column="14" selection-start="23700" selection-end="23700" vertical-scroll-proportion="-13.205882" vertical-offset="8296" max-vertical-offset="10095">
+        <state line="26" column="66" selection-start="1050" selection-end="1050" vertical-scroll-proportion="0.5760709" vertical-offset="0" max-vertical-offset="10155">
           <folding>
             <element signature="e#24#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
+    <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="338" column="67" selection-start="11562" selection-end="11562" vertical-scroll-proportion="0.907994" vertical-offset="4333" max-vertical-offset="5085">
+        <state line="38" column="10" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1410">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ens_app/staff/clerk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.9709379" vertical-offset="0" max-vertical-offset="14565">
+          <folding>
+            <element signature="e#24#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
