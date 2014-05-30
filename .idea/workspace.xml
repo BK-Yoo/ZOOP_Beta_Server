@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="661a88ae-fcb7-44e2-9947-27ec3c528ba1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/helper/interpreter.py" afterPath="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ens_app/views.py" afterPath="$PROJECT_DIR$/ens_app/views.py" />
     </list>
     <ignored path="ens.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ens_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="575" column="58" selection-start="23515" selection-end="23515" vertical-scroll-proportion="0.3799682" vertical-offset="8386" max-vertical-offset="10095">
+            <state line="583" column="14" selection-start="23700" selection-end="23700" vertical-scroll-proportion="-13.205882" vertical-offset="8296" max-vertical-offset="10095">
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
               </folding>
@@ -88,10 +87,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interpreter.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="interpreter.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="340" column="79" selection-start="11643" selection-end="11643" vertical-scroll-proportion="0.0" vertical-offset="4333" max-vertical-offset="5085">
+            <state line="338" column="67" selection-start="11562" selection-end="11562" vertical-scroll-proportion="0.907994" vertical-offset="4333" max-vertical-offset="5085">
               <folding />
             </state>
           </provider>
@@ -152,8 +151,8 @@
         <option value="$PROJECT_DIR$/ens_app/helper/formatchecker.py" />
         <option value="$PROJECT_DIR$/ens_app/staff/gate_keeper.py" />
         <option value="$PROJECT_DIR$/ens_app/staff/clerk.py" />
-        <option value="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
         <option value="$PROJECT_DIR$/ens_app/views.py" />
+        <option value="$PROJECT_DIR$/ens_app/helper/interpreter.py" />
       </list>
     </option>
   </component>
@@ -935,13 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="340" column="79" selection-start="11643" selection-end="11643" vertical-scroll-proportion="0.0" vertical-offset="4333" max-vertical-offset="5085">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/helper/formatchecker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="0" selection-start="2563" selection-end="2563" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1380">
@@ -960,10 +952,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ens_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="575" column="58" selection-start="23515" selection-end="23515" vertical-scroll-proportion="0.3799682" vertical-offset="8386" max-vertical-offset="10095">
+        <state line="583" column="14" selection-start="23700" selection-end="23700" vertical-scroll-proportion="-13.205882" vertical-offset="8296" max-vertical-offset="10095">
           <folding>
             <element signature="e#24#67#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ens_app/helper/interpreter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="338" column="67" selection-start="11562" selection-end="11562" vertical-scroll-proportion="0.907994" vertical-offset="4333" max-vertical-offset="5085">
+          <folding />
         </state>
       </provider>
     </entry>

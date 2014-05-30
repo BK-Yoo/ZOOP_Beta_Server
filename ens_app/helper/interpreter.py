@@ -338,6 +338,6 @@ def pack_up_amazon_s3_video_url(result):
         except (KeyError, ValueError):
             return json_response(server_status_code['SERVERERROR'])
 
-        result = amazon_s3_url.format(reversed_post_id=post_id.__str__()[::-1])
+        result = (amazon_s3_url.format(reversed_post_id=post_id.__str__()[::-1]), status_code)
 
     return json_response(result)
