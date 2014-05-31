@@ -86,4 +86,4 @@ def check_key_in_dict(input_data, check_path, target_key):
 
 
 def check_email_format(input_str):
-    return isinstance(input_str, str) and '@' in input_str and '.' in input_str
+    return (isinstance(input_str, str) or isinstance(input_str, unicode)) and '@' in input_str and '.' in input_str
