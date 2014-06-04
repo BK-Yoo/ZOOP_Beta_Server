@@ -82,7 +82,6 @@ def get_request_token(request):
 #    return json_response(gate_keeper.pickup_request_token(request))
 
 
-#one find and one insert
 @guest_request
 def member_sign_up(request):
     raw_user_info = interpreter.load_json_from_request(request)

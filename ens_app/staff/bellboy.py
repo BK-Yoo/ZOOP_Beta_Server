@@ -18,8 +18,8 @@ push_types = {'like_comment': 'lc',
               'to_all': 'ta'}
 
 #TODO 신고 받은 이메일을 적어야 한다.
-server_email_address = 'osehyum@gmail.com'
-server_notification_receiver = ['immonkey@naver.com']
+server_email_address = 'wrlawodms@gmail.com'
+server_notification_receiver = ['wrlawodms@gmail.com', 'dcmber12@gmail.com']
 
 
 #TODO 트랜스코딩 서버 URL 명시

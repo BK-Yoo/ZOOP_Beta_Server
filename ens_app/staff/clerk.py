@@ -16,8 +16,6 @@ from ens_app.helper import formatchecker
 import bellboy
 
 
-
-
 def make_list(cursor, attr=None):
     if cursor:
         if attr:
