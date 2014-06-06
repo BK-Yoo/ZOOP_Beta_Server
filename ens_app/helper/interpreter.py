@@ -268,7 +268,9 @@ def json_response(result):
             if not message:
                 message = 'ok'
 
-            return HttpResponse(json_util.dumps(message), content_type=response_content_type)
+            response = HttpResponse(json_util.dumps(message), content_type=response_content_type)
+            response['Access-Control-Allow-Origin'] = 'http://gifzoop.com, http://yslee.kr'
+            return response
 
     else:
         #server_status_code['SERVERERROR']
