@@ -155,7 +155,8 @@ def modify_user_info(request, access_token):
         return json_response(server_status_code['BADREQUEST'])
 
 
-@guest_request
+#@guest_request
+#for web sharing
 def get_content(request):
     param = extract_parameter_from_request(request, url_param_type['POST'],
                                            url_param_type['COMMENT'], url_param_type['USER'])
