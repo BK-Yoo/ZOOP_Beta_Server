@@ -269,7 +269,7 @@ def json_response(result):
                 message = 'ok'
 
             response = HttpResponse(json_util.dumps(message), content_type=response_content_type)
-            response['Access-Control-Allow-Origin'] = 'http://gifzoop.com, http://yslee.kr'
+            response['Access-Control-Allow-Origin'] = 'http://gifzoop.com'
             return response
 
     else:
