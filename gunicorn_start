@@ -1,12 +1,15 @@
 #!/bin/bash
  
 # Create the log directory if it doesn't exist
-LOGFILE=/home/ubuntu/nbserver/log/server.log
+
+
+LOGFILE=./log/server.log
 LOGDIR=$(dirname $LOGFILE)
 test -d $LOGDIR || mkdir -p $LOGDIR
+touch $LOGFILE
 
-DJANGODIR=/home/ubuntu/nbserver/ens             # Django project directory
-
+DJANGODIR=.             # Django project directory
+PYTHON_VIRTUAL_ENV=/home/bigs/py_vEnv/ens/ens
 
 #######################################GUNICORN OPTION PARAM#########################################
 NAME="ens"             		                # Name of the application
@@ -21,7 +24,7 @@ KEEPALIVE=2					# Retain connection between client and server
 #####################################################################################################
  
 cd $DJANGODIR
-source ../bin/activate				# Activate virtualenv 
+source $PYTHON_VIRTUAL_ENV/bin/activate # Activate virtualenv 
  
 exec gunicorn --worker-class $WORKER  \
   --bind $ADDRESS \

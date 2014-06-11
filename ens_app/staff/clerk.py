@@ -82,7 +82,7 @@ class Clerk(object):
         self.user_favorite_list = dict(COLLECT_POST='cpl', LIKE_POST='lpl', LIKE_COMMENT='lcl',
                                        FAVORITE_USER='ul', FAVORITE_TAG='tl')
 
-        self.current_client_package_name = 'com.nalby.zoop'
+        self.current_client_package_name = 'com.nalby.zoop.champagne'
 
 ###################################################WRITE OPERATION####################################################
     def sign_up(self, raw_user_info):
@@ -939,7 +939,7 @@ class Clerk(object):
             message_for_users = ''
         else:
             is_necessary_to_download_from_new_url = True
-            external_download_url = 'http://googleplay~~~'
+            external_download_url = 'https://play.google.com/store/apps/details?id='+self.current_client_package_name
             message_for_users = 'zoop이 새로운 어플리케이션으로 재 등장하였습니다!!'
 
         return {'ind': is_necessary_to_download_from_new_url, 'edu': external_download_url, 'msg': message_for_users}
