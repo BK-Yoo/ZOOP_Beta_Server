@@ -13,9 +13,7 @@ from bson.errors import InvalidId
 from ens_app.helper import formatchecker
 from ens_app.helper import interpreter
 
-
 NO_FACEBOOK_EMAIL = 0
-
 
 def safe_token_get_call(call):
     def _safe_token_get_call(*args, **kwargs):
@@ -32,7 +30,6 @@ def safe_token_get_call(call):
             return interpreter.server_status_code['SERVERERROR']
 
     return _safe_token_get_call
-
 
 class GateKeeper(object):
 
@@ -70,22 +67,18 @@ class GateKeeper(object):
         #로그인 하는 회원의 타입
         self.member_type = dict(NORMAL=0, FACEBOOK=1)
 
-
     #입력되는 비밀번호 정보를 암호화하여 저장한다
     def encrypt_user_password(self, password):
         return hashlib.sha224(password).hexdigest()
-
 
     @safe_token_get_call
     def extract_user_id_from_access_token(self, access_token):
         return access_token['md']['oi']
 
-
     def make_request_token(self):
         #request token에서 필요한 정보는 object id 하나 뿐이기 때문에
         #insert의 결과로 request token의 object id가 반환된다.
         return self.request_token_col.insert({'ca': datetime.datetime.utcnow()})
-
 
     @safe_token_get_call
     def issue_request_token(self, request):
@@ -94,7 +87,6 @@ class GateKeeper(object):
 
         else:
             return False
-
 
 #    @safe_token_get_call
 #    def pickup_request_token(self, request):
@@ -111,7 +103,6 @@ class GateKeeper(object):
 
 #        return interpreter.server_status_code['BADREQUEST']
 
-
     def is_our_member(self, request):
 
         access_token = self.get_valid_access_token(request)
@@ -123,7 +114,6 @@ class GateKeeper(object):
             return access_token
 
         return False
-
 
     def is_access_token_valid(self, access_token):
         #엑세스 토큰의 파기 날짜를 불러온다.
@@ -137,7 +127,6 @@ class GateKeeper(object):
         else:
             return False
 
-
     @safe_token_get_call
     def is_our_valid_member_request(self, request):
 
@@ -149,7 +138,6 @@ class GateKeeper(object):
         else:
             return False
 
-
     def get_valid_access_token(self, request):
         if self.access_token_key in request.META:
             #엑세스토큰의 정보를 bson 형태로 복구한다.
@@ -157,7 +145,6 @@ class GateKeeper(object):
 
         else:
             return None
-
 
     @safe_token_get_call
     def is_our_service_guest_request(self, request):
@@ -173,7 +160,6 @@ class GateKeeper(object):
 
         else:
             return False
-
 
     #유저가 보낸 인증정보의 암호를 해독한다.
     def decrypt_password(self, auth_info, decrypt_type):
@@ -202,7 +188,6 @@ class GateKeeper(object):
 
         return auth_info
 
-
     def authenticate_guest(self, request):
         #비회원이 인증정보(아이디, 비밀번호 등)을 통해 인증받는 경우
         if self.is_our_service_guest_request(request):
@@ -230,7 +215,6 @@ class GateKeeper(object):
         else:
             return self.is_our_member(request)
 
-
     @safe_token_get_call
     def member_login_check(self, request):
         #유저의 엑세스 토큰을 불러온다.
@@ -251,7 +235,6 @@ class GateKeeper(object):
         else:
             return interpreter.server_status_code['FORBIDDEN']
 
-
     #엑세스 토큰을 만든다.
     def make_access_token(self, user_id=None):
         if not user_id:
@@ -261,7 +244,6 @@ class GateKeeper(object):
         access_token['md'] = {'oi': user_id, 'ed': expiration_date}
         access_token['_id'] = bson.ObjectId()
         return access_token
-
 
     def is_admin(self, request):
         header = request.META
@@ -273,7 +255,6 @@ class GateKeeper(object):
                 return True
 
         return False
-
 
     def issue_admin_request_header(self):
         return {key.replace('HTTP_', ''): value for key, value in self.admin_access_key.values()}

@@ -9,7 +9,7 @@ test -d $LOGDIR || mkdir -p $LOGDIR
 touch $LOGFILE
 
 DJANGODIR=.             # Django project directory
-PYTHON_VIRTUAL_ENV=/home/bigs/py_vEnv/ens/ens
+PYTHON_VIRTUAL_ENV=/home/yslee/nbserver
 
 #######################################GUNICORN OPTION PARAM#########################################
 NAME="ens"             		                # Name of the application

@@ -35,10 +35,10 @@ amazon_s3_url = 'http://s3-ap-northeast-1.amazonaws.com/content.gifzoop/{reverse
 content_limit = 40
 
 class UrlParameter(object):
-
-    # Request에 실려온 파라미터들을 정해진 타입에 따라 값을 바꿔준다
-    # 파라미터의 타입과 키 값은 미리 정해져있다
-
+    """
+    Request에 실려온 파라미터들을 정해진 타입에 따라 값을 바꿔준다
+    파라미터의 타입과 키 값은 미리 정해져있다
+    """
     def __init__(self, url_param, req_get):
         self.key = url_param
         self.pars_type = self.check_type_of_param()
@@ -50,6 +50,7 @@ class UrlParameter(object):
     def get_value(self):
         return self.value
 
+    # parameter 값을 알맞은 형태로 변환해줌. ID, STRING, INTEGER, COUNT 4종류가 있음.
     def convert_parameter(self, req_get):
         converted_param = 0
 
@@ -86,7 +87,7 @@ class UrlParameter(object):
 
         if self.key:
             if self.key == url_param_type['USER']:
-                #유저 아이
+                #유저 아이디
                 pars_type = parsing_type['ID']
 
             elif self.key == url_param_type['POST']:
@@ -151,9 +152,12 @@ class UrlParameter(object):
 
         return pars_type
 
-    #한 번에 불러오는 게시물의 개수를 제한한다.
-    #이 클래스의 self.content_number_restriction에 제한 숫자가 지정되어있다.
     def restrict_number_of_contents(self, count):
+        """
+        한 번에 불러오는 게시물의 개수를 제한한다.
+        이 클래스의 self.content_number_restriction에 제한 숫자가 지정되어있다.(content_limit을 의미하는 듯.)
+        """
+
         if count > content_limit:
             return content_limit
 

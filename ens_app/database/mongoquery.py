@@ -14,6 +14,7 @@ DUPLICATE = 3
 
 
 #mongo db에서 일어날 수 있는 예상치 못한 에러를 처리하는 데코레이터 함수
+# 에러가 발생했을 경우, num_of_tries 만큼 같은 작업을 시도한다.
 def safe_mongo_call(call):
     num_of_tries = 3
 
@@ -40,16 +41,19 @@ def safe_mongo_call(call):
 
     return _safe_mongo_call
 
-
+# MongoDB 쿼리를 처리하는 클래스.
 class QueryExecuter(object):
+    # 생성자에서 db_keeper를 멤버변수로 저장.
     def __init__(self, db_keeper):
         self.db_keeper = db_keeper
 
 #####################################################WRITE OPERATION###################################################
-    #target_col 이나 target_type을 넣으면 된다.
+    # target_col 이나 target_type을 넣으면 된다.
+    # upsert = true 마지막 인자로 넣으면, 매치 되는 다큐먼트가 없을 경우 새로 만든다. default 값은 False.
     @safe_mongo_call
     def update_content(self, find_query, set_query, target_col, upsert=False):
         target_col = self.db_keeper.connect_to_collection(target_col)
+        # upsert (optional): perform an upsert if True
         return target_col.update(find_query, set_query, upsert=upsert)
 
     @safe_mongo_call

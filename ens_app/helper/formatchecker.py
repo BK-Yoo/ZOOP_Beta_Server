@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'bkyoo'
 
+# data type 상수를 저장하는 python dictionary.
 data_type = {'NEW_POST': 0,
              'MOD_POST': 1,
              'NEW_COMMENT': 2,
@@ -27,6 +28,7 @@ ROOT_PATH = 0
 # }
 #위와 같은 구조의 JSON이 맞는지 검사한다.
 
+# key : data_type 상수, value : 검사식 tuple을 저장하는 python dictionary.
 # 각 데이터 타입에 따른 JSON 검사식은 다음과 같다.
 data_format = {data_type['NEW_POST']: [#게시물 내용
                                        (('co',), 'ti'), (('co',), 'tx'), (('co',), 'tl'),
@@ -85,5 +87,6 @@ def check_key_in_dict(input_data, check_path, target_key):
         return target_key in input_data
 
 
+# (str 객체 || unicode 객체) && (input_str에 @ 가 들어있는 지 여부) && (input_str 안에 .이들어 있는 지 여부)
 def check_email_format(input_str):
     return (isinstance(input_str, str) or isinstance(input_str, unicode)) and '@' in input_str and '.' in input_str

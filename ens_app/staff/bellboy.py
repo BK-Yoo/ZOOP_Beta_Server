@@ -18,8 +18,8 @@ push_types = {'like_comment': 'lc',
               'to_all': 'ta'}
 
 #TODO 신고 받은 이메일을 적어야 한다.
-server_email_address = 'wrlawodms@gmail.com'
-server_notification_receiver = ['wrlawodms@gmail.com', 'dcmber12@gmail.com']
+server_email_address = 'yslee@zzalit.com'
+server_notification_receiver = ['yslee@zzalit.com', 'dcmber12@gmail.com']
 
 
 #TODO 트랜스코딩 서버 URL 명시
@@ -27,6 +27,12 @@ transcode_server_url = '172.31.29.148/tvu?pi={post_id}'
 
 
 def send_report_message(report_target_id):
+    """
+    Amazon Web Service SES 서비스를 이용하여 메일을 보낸다.
+    :param report_target_id: AWS Access Key ID.
+    :return: 이메일 모내기 성공 여부를 리턴.
+    """
+
     try:
         conn = boto.connect_ses()
         subject, message = briefcase.get_report_message(report_target_id)
@@ -38,7 +44,15 @@ def send_report_message(report_target_id):
 
 
 def send_push_message(content_id, requester_id, push_type, target_type, push_certification):
-    #푸시 서버한테 정보를 보낸다
+    """
+    푸시 서버에 정보를 보낸다.
+    :param content_id:
+    :param requester_id:
+    :param push_type:
+    :param target_type:
+    :param push_certification:
+    :return:
+    """
     push_paper = briefcase.get_push_payload(content_id, requester_id, push_type, target_type)
     try:
         r = requests.post(push_server_url, data=json_util.dumps(push_paper), headers=push_certification, timeout=1)
@@ -50,6 +64,11 @@ def send_push_message(content_id, requester_id, push_type, target_type, push_cer
 
 
 def send_transcode_request(post_id):
+    """
+    transcode 서버에 요청을 보냄.
+    :param post_id:
+    :return:
+    """
     transcode_request_url = transcode_server_url.format(post_id=post_id.__str__())
     try:
         r = requests.get(transcode_request_url, timeout=4)
